@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reader_ebooks/features/books/books_screen.dart';
+import 'package:reader_ebooks/utils/menu_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => BooksScreen(),
+              builder: (context) => MenuNavBar(),
             ),
           );
         },
