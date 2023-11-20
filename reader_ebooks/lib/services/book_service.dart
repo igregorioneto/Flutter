@@ -25,8 +25,8 @@ class BookService extends ChangeNotifier {
               id: book['id'] ?? '',
               title: book['title'] ?? '',
               author: book['author'] ?? '',
-              coverUrl: book['coverUrl'] ?? '',
-              downloadUrl: book['downloadUrl'] ?? '',
+              coverUrl: book['cover_url'] ?? '',
+              downloadUrl: book['download_url'] ?? '',
             );
         }).toList();
 

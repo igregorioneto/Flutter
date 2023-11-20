@@ -41,8 +41,8 @@ Widget _bookCard(BuildContext context, Book book) {
   );
 }
 
-Widget _bookImageCover(String coverUrl) {
-  return Image.asset(
+Widget _bookImageCover(dynamic coverUrl) {
+  return Image.network(
     coverUrl,
     width: 50,
     height: 80,
