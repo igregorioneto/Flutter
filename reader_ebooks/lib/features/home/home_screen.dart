@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:reader_ebooks/features/books/books_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -8,27 +9,40 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Leitor de eBooks'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Bem vindo ao',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      body: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => BooksScreen(),
             ),
-            SizedBox(height: 10),
-            Text(
-              'Leitor de eBooks',
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Pronto para começar a ler excelentes livros?',
-              style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
-            ),
-          ],
+          );
+        },
+        child: Center(
+          child: _buildWelcomeMessage(),
         ),
       ),
     );
   }
+}
+
+Widget _buildWelcomeMessage() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Text(
+        'Bem vindo ao',
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(height: 10),
+      Text(
+        'Leitor de eBooks',
+        style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+      ),
+      SizedBox(height: 10),
+      Text(
+        'Clique na tela para começar a ler excelentes livros!',
+        style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+      ),
+    ],
+  );
 }
