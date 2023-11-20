@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reader_ebooks/features/home/home_screen.dart';
+import 'package:reader_ebooks/services/book_service.dart';
 import 'package:reader_ebooks/utils/menu_nav_bar.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => BookService(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
