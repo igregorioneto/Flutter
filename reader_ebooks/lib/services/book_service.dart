@@ -8,8 +8,11 @@ class BookService extends ChangeNotifier {
   final http.Client httpClient = http.Client();
 
   List<Book> _books = [];
+  List<int> _favorites = [];
 
   List<Book> get books => _books;
+  List<Book> get favoriteBooks =>
+      _books.where((book) => _favorites.contains(book.id)).toList();
 
   Future<List<Book>> fetchBooks() async {
       var url = Uri.https('escribo.com', '/books.json');
@@ -35,6 +38,19 @@ class BookService extends ChangeNotifier {
       } else {
         throw Exception('Falha ao carregar a lista de livros...');
       }
+  }
+
+  bool isFavorite(int id) {
+    return _favorites.contains(id);
+  }
+
+  void toggleFavorite(int id) {
+    if (_favorites.contains(id)) {
+      _favorites.remove(id);
+    } else {
+      _favorites.add(id);
+    }
+    notifyListeners();
   }
 
   void dispose() {

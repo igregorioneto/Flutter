@@ -23,7 +23,7 @@ class BooksScreen extends StatelessWidget {
             ),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
-              return _bookCard(context, snapshot.data![index]);
+              return _bookCard(context, snapshot.data![index], bookService);
             },
           );
         }
@@ -32,7 +32,7 @@ class BooksScreen extends StatelessWidget {
   }
 }
 
-Widget _bookCard(BuildContext context, Book book) {
+Widget _bookCard(BuildContext context, Book book, BookService bookService) {
   return Padding(
     padding: EdgeInsets.only(bottom: 10.0),
     child: Stack(
@@ -73,7 +73,7 @@ Widget _bookCard(BuildContext context, Book book) {
         Positioned(
           top: 0,
           right: 0,
-          child: _bookFavorite(book.id),
+          child: _bookFavorite(book.id, bookService),
         ),
       ],
     ),
@@ -89,11 +89,11 @@ Widget _bookImageCover(dynamic coverUrl) {
   );
 }
 
-Widget _bookFavorite(int id) {
+Widget _bookFavorite(int id, BookService bookService) {
   return IconButton(
-    icon: Icon(Icons.bookmark),
+    icon: Icon(bookService.isFavorite(id) ? Icons.bookmark : Icons.bookmark_outline),
     onPressed: () {
-      print(id);
+      bookService.toggleFavorite(id);
     },
   );
 }
