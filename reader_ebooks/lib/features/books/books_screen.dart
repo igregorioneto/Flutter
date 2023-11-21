@@ -17,7 +17,10 @@ class BooksScreen extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Text('Erro ao carregar informações ${snapshot.error}');
         } else {
-          return ListView.builder(
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+            ),
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return _bookCard(context, snapshot.data![index]);
@@ -30,15 +33,44 @@ class BooksScreen extends StatelessWidget {
 }
 
 Widget _bookCard(BuildContext context, Book book) {
-  return Card(
-    margin: EdgeInsets.all(8.0),
-    child: ListTile(
-      leading: _bookImageCover(book.coverUrl),
-      title: Text(book.title),
-      subtitle: Text(book.author),
-      trailing: _bookFavorite(book.id),
+  return Padding(
+    padding: EdgeInsets.only(bottom: 10.0),
+    child: Container(
+      decoration: BoxDecoration(
+        color: Colors.white70,
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      padding: EdgeInsets.all(2.0),
+      margin: EdgeInsets.all(10.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            flex: 3,
+            child: _bookImageCover(book.coverUrl),
+          ),
+          SizedBox(height: 8.0),
+          Expanded(
+            flex: 1,
+            child: Text(
+              book.title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          SizedBox(height: 4.0),
+          Expanded(
+            flex: 1,
+            child: Text(
+              book.author,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     ),
   );
+
 }
 
 Widget _bookImageCover(dynamic coverUrl) {
