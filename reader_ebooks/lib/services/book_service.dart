@@ -45,12 +45,18 @@ class BookService extends ChangeNotifier {
   }
 
   void toggleFavorite(int id) {
+    var wasFavorite = _favorites.contains(id);
     if (_favorites.contains(id)) {
       _favorites.remove(id);
     } else {
       _favorites.add(id);
     }
-    notifyListeners();
+
+
+    var isFavorite = _favorites.contains(id);
+    if (wasFavorite != isFavorite) {
+      notifyListeners();
+    }
   }
 
   void dispose() {
