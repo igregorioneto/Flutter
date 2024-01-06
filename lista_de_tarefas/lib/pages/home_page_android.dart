@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lista_de_tarefas/components/dialog_create_task_android.dart';
+import 'package:lista_de_tarefas/data/Tasks.dart';
+import 'package:lista_de_tarefas/pages/new_task_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,18 +13,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List rowList = [];
 
-  final _controller = TextEditingController();
+  // final _controller = TextEditingController();
 
-  void addNewTask() {
+  /*void addNewTask() {
     setState(() {
-      rowList.add(RowList(title: _controller.text,));
+      rowList.add(RowList(
+        title: _controller.text,
+      ));
       _controller.clear();
     });
     Navigator.of(context).pop();
-  }
+  }*/
 
   void dialogCreateNewTask() {
-    showDialog(
+    /*showDialog(
       context: context,
       builder: (context) {
         return DialogCreateTask(
@@ -31,6 +35,19 @@ class _HomePageState extends State<HomePage> {
           onCancel: () => Navigator.of(context).pop(),
         );
       }
+    );*/
+    final Future<Tasks?> task = Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => NewTaskPage()));
+
+    task.then(
+      (value) => {
+        setState(() {
+          rowList.add(RowList(
+            title: value?.title ?? '',
+            description: value?.description ?? '',
+          ));
+        })
+      },
     );
   }
 
@@ -60,9 +77,14 @@ class _HomePageState extends State<HomePage> {
 
 class RowList extends StatefulWidget {
   final title;
+  String description;
   bool checked;
 
-  RowList({super.key, required this.title, this.checked = false});
+  RowList(
+      {super.key,
+      required this.title,
+      this.checked = false,
+      this.description = ""});
 
   @override
   State<RowList> createState() => _RowListState();
@@ -73,6 +95,7 @@ class _RowListState extends State<RowList> {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(widget.title),
+      subtitle: Text(widget.description),
       trailing: widget.checked ? Icon(Icons.check) : null,
       onTap: () {
         setState(() {

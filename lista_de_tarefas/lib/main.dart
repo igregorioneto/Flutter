@@ -8,7 +8,6 @@ void main() {
   if (Platform.isIOS) {
     runApp(ios.MyApp());
   } else {
-    //runApp(android.MyApp());
-    runApp(ios.MyApp());
+    runApp(android.MyApp());
   }
 }
