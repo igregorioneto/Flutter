@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lista_de_tarefas/components/DialogCreateTask.dart';
+import 'package:lista_de_tarefas/components/dialog_create_task_android.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

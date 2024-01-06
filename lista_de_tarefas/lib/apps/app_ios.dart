@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:lista_de_tarefas/pages/home_page_ios.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
+   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return CupertinoApp(
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
+    );
   }
 }
