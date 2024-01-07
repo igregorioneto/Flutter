@@ -36,10 +36,10 @@ class _NewTaskPageState extends State<NewTaskPage> {
       appBar: AppBar(
         title: Text(
           "Nova Tarefa",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SafeArea(
         child: Column(

@@ -57,10 +57,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(
           "Tarefas para hoje",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         centerTitle: true,
-        backgroundColor: Colors.blue,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: dialogCreateNewTask,
