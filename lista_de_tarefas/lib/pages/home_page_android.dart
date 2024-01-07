@@ -93,6 +93,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _deleteTask(int index, Tasks task, BuildContext context) {
+    print("deletando...");
     setState(() {
       rowList.removeAt(index);
       _saveList();
@@ -141,7 +142,9 @@ class _RowListState extends State<RowList> {
     return Dismissible(
       key: UniqueKey(),
       direction: DismissDirection.endToStart,
-      onDismissed: (_) => widget.onDeleteItem,
+      onDismissed: (_) {
+        widget.onDeleteItem();
+      },
       background: Container(
         color: Colors.red,
         child: Align(
